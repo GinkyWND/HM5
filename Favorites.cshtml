@@ -1,0 +1,38 @@
+@model IEnumerable<WebApp.Models.Cat>
+
+<div class="container mt-4">
+    <h2 class="text-danger mb-4">❤️ Список любимых котиков</h2>
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-warning" role="alert">
+            У вас пока нет любимых котиков. Отметьте их сердечком в <a asp-action="Index" class="alert-link">общем списке</a>!
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            @foreach (var cat in Model)
+            {
+                <div class="col-md-4 mb-3">
+                    <div class="card shadow-sm border-danger">
+                        <div class="card-body">
+                            <h5 class="card-title text-danger">@cat.Name</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Порода: @cat.Breed</h6>
+                            <p class="card-text">
+                                Возраст: @cat.Age лет<br />
+                                Вес: @cat.Weight кг<br />
+                                Цвет: @cat.Color
+                            </p>
+                            <a asp-action="ToggleFavorite" asp-route-id="@cat.Id" class="btn btn-outline-danger btn-sm">Убрать из избранного</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+
+    <div class="mt-3">
+        <a asp-action="Index" class="btn btn-secondary">Назад к общему списку</a>
+    </div>
+</div>
