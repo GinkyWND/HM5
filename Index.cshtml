@@ -1,0 +1,4 @@
+<!-- Пример добавления кнопки в цикле вывода котиков -->
+<a asp-action="ToggleFavorite" asp-route-id="@cat.Id" class="btn @(cat.IsFavorite ? "btn-danger" : "btn-outline-danger") btn-sm">
+    @(cat.IsFavorite ? "❤️ В избранном" : "🤍 В избранное")
+</a>
